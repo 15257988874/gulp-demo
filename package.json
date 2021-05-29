@@ -27,6 +27,7 @@
     "webpack-stream": "^6.1.2"
   },
   "scripts": {
+    "dev": "gulp",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
