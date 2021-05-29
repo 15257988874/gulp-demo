@@ -4,11 +4,9 @@ const cleanCSS = require('gulp-clean-css')
 const htmlmin = require('gulp-htmlmin')
 const autoprefixer = require('gulp-autoprefixer') // css添加前缀
 const revCollector = require('gulp-asset-rev') //给js  css加版本号
-// const connect = require('gulp-connect')
 const babel = require('gulp-babel')
 const notify = require('gulp-notify')
 const clean = require('gulp-clean')
-// const open = require('open')
 const webpack = require('webpack-stream')
 const named = require('vinyl-named')
 
@@ -40,52 +38,43 @@ gulp.task('watchs', function () {
 })
 
 gulp.task('html', function () {
-  return (
-    gulp
-      .src(htmlUrl)
-      .pipe(htmlmin(htmlminOptions))
-      .pipe(
-        revCollector({
-          replaceReved: true
-        })
-      )
-      .pipe(gulp.dest('./dist/views'))
-      // .pipe(connect.reload())
-      .pipe(notify({ message: 'HTML文件压缩完毕' }))
-  )
+  return gulp
+    .src(htmlUrl)
+    .pipe(htmlmin(htmlminOptions))
+    .pipe(
+      revCollector({
+        replaceReved: true
+      })
+    )
+    .pipe(gulp.dest('./dist/views'))
+    .pipe(notify({ message: 'HTML文件压缩完毕' }))
 })
 
 gulp.task('index', function () {
-  return (
-    gulp
-      .src('./index.html')
-      .pipe(htmlmin(htmlminOptions))
-      .pipe(
-        revCollector({
-          replaceReved: true
-        })
-      )
-      .pipe(gulp.dest('./dist/'))
-      // .pipe(connect.reload())
-      .pipe(notify({ message: '首页压缩完毕' }))
-  )
+  return gulp
+    .src('./index.html')
+    .pipe(htmlmin(htmlminOptions))
+    .pipe(
+      revCollector({
+        replaceReved: true
+      })
+    )
+    .pipe(gulp.dest('./dist/'))
+    .pipe(notify({ message: '首页压缩完毕' }))
 })
 
 gulp.task('css', function () {
-  return (
-    gulp
-      .src(cssUrl)
-      .pipe(cleanCSS({ compatibility: 'ie8' }))
-      .pipe(autoprefixer())
-      .pipe(
-        revCollector({
-          replaceReved: true
-        })
-      )
-      .pipe(gulp.dest('./dist/css')) //当前对应css文件
-      // .pipe(connect.reload())
-      .pipe(notify({ message: 'CSS文件压缩完毕' }))
-  )
+  return gulp
+    .src(cssUrl)
+    .pipe(cleanCSS({ compatibility: 'ie8' }))
+    .pipe(autoprefixer())
+    .pipe(
+      revCollector({
+        replaceReved: true
+      })
+    )
+    .pipe(gulp.dest('./dist/css')) //当前对应css文件
+    .pipe(notify({ message: 'CSS文件压缩完毕' }))
 })
 
 gulp.task('js', function () {
@@ -120,19 +109,15 @@ gulp.task('js', function () {
         })
       ) //压缩js
       .pipe(gulp.dest('./dist/js'))
-      // .pipe(connect.reload())
       .pipe(notify({ message: 'js文件压缩完毕' }))
   )
 })
 
 gulp.task('image', function () {
-  return (
-    gulp
-      .src(imgUrl)
-      .pipe(gulp.dest('./dist/img'))
-      // .pipe(connect.reload())
-      .pipe(notify({ message: '图片压缩完毕' }))
-  )
+  return gulp
+    .src(imgUrl)
+    .pipe(gulp.dest('./dist/img'))
+    .pipe(notify({ message: '图片压缩完毕' }))
 })
 
 gulp.task('library', function () {
