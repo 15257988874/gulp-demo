@@ -29,7 +29,7 @@ const htmlminOptions = {
 }
 // 清空目录
 gulp.task('clean', function () {
-  return gulp.src('dist').pipe(clean())
+  return gulp.src('dist', { read: false }).pipe(clean())
 })
 
 //监听改动的文件
