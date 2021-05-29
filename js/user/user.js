@@ -15,3 +15,9 @@ const getUserInfo = id => {
 function sayHello() {
   console.log('hello,lux')
 }
+
+const getUserToken = async () => {
+  return await new Promise(resolve => {
+    setTimeout(resolve, 1000, 'token')
+  })
+}

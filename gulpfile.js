@@ -9,6 +9,8 @@ const babel = require('gulp-babel')
 const notify = require('gulp-notify')
 const clean = require('gulp-clean')
 // const open = require('open')
+const webpack = require('webpack-stream')
+const named = require('vinyl-named')
 
 const jsUrl = './js/**/*.js'
 const cssUrl = './css/**/*.css'
@@ -90,9 +92,19 @@ gulp.task('js', function () {
   return (
     gulp
       .src(jsUrl)
+      // .pipe(
+      //   babel({
+      //     presets: ['@babel/env']
+      //   })
+      // )
       .pipe(
-        babel({
-          presets: ['@babel/env']
+        named(function (file) {
+          return file.relative.split('.')[0]
+        })
+      )
+      .pipe(
+        webpack({
+          mode: 'production'
         })
       )
       .pipe(
@@ -109,7 +121,7 @@ gulp.task('js', function () {
       ) //压缩js
       .pipe(gulp.dest('./dist/js'))
       // .pipe(connect.reload())
-      .pipe(notify({ message: 'js文件混缩完毕' }))
+      .pipe(notify({ message: 'js文件压缩完毕' }))
   )
 })
 
